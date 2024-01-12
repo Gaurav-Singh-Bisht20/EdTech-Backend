@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const mailSender = require("../utils/mailSender");
 const bcrypt = require("bcrypt");
+const crypto = require("crypto");
 
 exports.resetPasswordToken = async (req, res) => {
     try {
@@ -10,7 +11,7 @@ exports.resetPasswordToken = async (req, res) => {
             return res.json({success:false, message:'Your Email is not registered with us'});
         }
 
-        const token  = crypto.randomUUID();
+        const token = crypto.randomBytes(20).toString("hex");
         const updatedDetails = await User.findOneAndUpdate(
             {email:email},
             {
