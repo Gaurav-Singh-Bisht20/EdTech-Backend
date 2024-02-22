@@ -9,7 +9,7 @@ const {createSection,updateSection,deleteSection} = require("../controllers/Sect
 
 const {createSubSection,updateSubSection,deleteSubSection} = require("../controllers/Subsection")
 
-const {createRating,getAverageRating,getAllRating} = require("../controllers/RatingAndReview")
+const {createRating,getAverageRating,getAllRatingReview} = require("../controllers/RatingAndReview")
 
 const { auth, isInstructor, isStudent, isAdmin } = require("../middlewares/auth")
 
@@ -29,13 +29,13 @@ router.get("/getAllCourses", getAllCourses)
 router.post("/getCourseDetails", getCourseDetails)
 router.post("/getFullCourseDetails", auth, getFullCourseDetails)
 router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress)
-router.post("/getProgressPercentage", auth, isStudent, getProgressPercentage)
+// router.post("/getProgressPercentage", auth, isStudent, getProgressPercentage)
 router.delete("/deleteCourse", deleteCourse)
 router.post("/createCategory", auth, isAdmin, createCategory)
 router.get("/showAllCategories", showAllCategories)
 router.post("/getCategoryPageDetails", categoryPageDetails)
 router.post("/createRating", auth, isStudent, createRating)
 router.get("/getAverageRating", getAverageRating)
-router.get("/getReviews", getAllRating)
+router.get("/getReviews", getAllRatingReview)
 
 module.exports = router
