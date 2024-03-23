@@ -1,4 +1,3 @@
-// const { config } = require("dotenv");
 const nodemailer = require("nodemailer");
 
 require("dotenv").config();
@@ -15,7 +14,7 @@ const mailSender = async (email, title, body) => {
 
 
             let info = await transporter.sendMail({
-                from: 'StudyNotion || CodeHelp - by Babbar',
+                from: 'Eduxcell',
                 to:`${email}`,
                 subject: `${title}`,
                 html: `${body}`,
