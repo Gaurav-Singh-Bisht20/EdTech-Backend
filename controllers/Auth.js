@@ -8,6 +8,7 @@ const { passwordUpdated } = require("../mail/templates/passwordUpdate");
 const Profile = require("../models/Profile");
 require("dotenv").config();
 
+// SignUp Controller
 exports.signUp = async (req, res) => {
     try {
         const {
@@ -20,11 +21,13 @@ exports.signUp = async (req, res) => {
             contactNumber, 
             otp
         } = req.body;
+
         if(!firstName || !lastName || !email || !password || !confirmPassword
             || !otp) {
                 return res.status(403).json({
                     success:false,
                     message:"All fields are required",
+                    firstName,lastName,email,password,confirmPassword,accountType,otp
                 })
         }
 
@@ -44,7 +47,7 @@ exports.signUp = async (req, res) => {
         }
 
         const recentOtp = await OTP.find({email}).sort({createdAt:-1}).limit(1);
-        console.log(recentOtp);
+        console.log(recentOtp,"hiii");
         if(recentOtp.length ===0 ) {
             return res.status(400).json({
                 success:false,
@@ -96,6 +99,7 @@ exports.signUp = async (req, res) => {
 
 }
 
+// Login Controller
 exports.login = async (req, res) => {
     try {
         const {email, password} = req.body;
@@ -152,7 +156,7 @@ exports.login = async (req, res) => {
     }
 };
 
-
+//SendOTP Controller
 exports.sendOTP = async (req, res) =>  {
     console.log('Received POST request to /api/v1/auth/sendotp');
     try {
@@ -193,7 +197,8 @@ exports.sendOTP = async (req, res) =>  {
 		return res.status(500).json({ success: false, error: error.message });
 	}
 }
-// Controller for Changing Password
+
+// ChangePassword Controller
 exports.changePassword = async (req, res) => {
 	try {
 		const userDetails = await User.findById(req.user.id);
