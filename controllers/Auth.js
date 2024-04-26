@@ -109,8 +109,10 @@ exports.login = async (req, res) => {
                 message:'All fields are required, please try again',
             });
         }
+        
         const user = await User.findOne({email}).populate("additionalDetails");
         if(!user) {
+            
             return res.status(401).json({
                 success:false,
                 message:"User is not registrered, please signup first",
