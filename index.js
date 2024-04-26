@@ -10,7 +10,7 @@ const dotenv = require("dotenv");
 
 
 dotenv.config();
-const PORT = 8000
+
 
 //database connect
 database.connect();
@@ -60,7 +60,7 @@ app.get("/", (req, res) => {
 	});
 });
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
 	console.log(`App is running at ${PORT}`)
 })
 
