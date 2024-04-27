@@ -4,21 +4,11 @@ const mongoose = require("mongoose")
 
 // Create a new rating and review
 exports.createRating = async (req, res) => {
-<<<<<<< HEAD
-    try{
-        const userId = req.user.id;
-        const {rating, review, courseId} = req.body;
-        const courseDetails = await Course.findOne(
-                                    {_id:courseId,
-                                    studentsEnrolled: {$elemMatch: {$eq: userId} },
-                                });
-=======
   try {
     const userId = req.user.id
     const { rating, review, courseId } = req.body
 
     // Check if the user is enrolled in the course
->>>>>>> 14f5000aa0240698032ace5599b98b96a5d2c9b4
 
     const courseDetails = await Course.findOne({
       _id: courseId,
