@@ -4,7 +4,7 @@ const app = express();
 const database = require("./config/database");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const {cloudinaryConnect} = require("./config/cloudinary");
+const cloudinary = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
 
@@ -37,7 +37,7 @@ app.use(
 	})
 )
 //cloudinary connection
-cloudinaryConnect();
+cloudinary.cloudinaryConnect();
 
 const userRoutes = require("./routes/User")
 const profileRoutes = require("./routes/Profile");
