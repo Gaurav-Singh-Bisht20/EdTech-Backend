@@ -18,7 +18,7 @@ database.connect();
 app.use(express.json());
 app.use(cookieParser());
 
-const whitelist = ['http://localhost:3000'];
+const whitelist = ['https://edtech-2yn9.onrender.com'];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1 || !origin) {
